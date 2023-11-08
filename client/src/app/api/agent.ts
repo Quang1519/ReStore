@@ -25,6 +25,7 @@ axios.interceptors.response.use(async response => {
                 }
                 throw modelStateErrors.flat();
             }
+            toast.error(data.title);
             break;
         case 404:
             toast.error(data.title);
