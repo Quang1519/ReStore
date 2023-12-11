@@ -1,0 +1,29 @@
+# fly.toml app configuration file generated for restore01519 on 2023-12-07T15:32:12+07:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = "restore01519"
+primary_region = "sin"
+
+[build]
+  image = "quang1519/restore:latest"
+
+[env]
+  ASPNETCORE_URLS="http://+:8080"
+  StripeSettings__PublishableKey="pk_test_51OErc7ImpCcW5wf8BPz524uKqwgkCssLnPnz1tIjdVFpLXg1ohvTMAyRtwLuVZ3LnSiz6MnAqJyLPFiI2nYXkftA0069EQVc4K"
+  Cloudinary__CloudName="dhsovl41m"
+  Cloudinary__ApiKey="735479486517356"
+
+[http_service]
+  internal_port = 8080
+  force_https = true
+  auto_stop_machines = true
+  auto_start_machines = true
+  min_machines_running = 0
+  processes = ["app"]
+
+[[vm]]
+  cpu_kind = "shared"
+  cpus = 1
+  memory_mb = 256

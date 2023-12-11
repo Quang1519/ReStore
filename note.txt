@@ -1,0 +1,14 @@
+"DefaultConnection" : "Data source=store.db"
+
+Username:    postgres
+Password:    FGxvjickWzeyPmt
+Hostname:    restoredb.internal
+Flycast:     fdaa:3:ce77:0:1::2
+Proxy port:  5432
+Postgres port:  5433
+Connection string: postgres://postgres:FGxvjickWzeyPmt@restoredb.flycast:5432
+ 
+stripe login
+stripe listen -f http://localhost:5000/api/payments/webhook -e charge.succeeded
+
+"start": "react-scripts start",

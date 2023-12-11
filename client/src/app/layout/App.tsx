@@ -8,9 +8,12 @@ import LoadingComponent from "./LoadingComponent";
 import { useAppDispatch } from "../store/configureStore";
 import { fetchBasketAsync } from "../../features/basket/basketSlice";
 import { fetchCurrentUser } from "../../features/account/accountSlice";
+import { useLocation } from "react-router-dom";
+import HomePage from "../../features/home/HomePage";
 
 
 function App() {
+  const location = useLocation();
   const dispatch = useAppDispatch();
   const [loading, setLoading] = useState(true);
 
@@ -42,16 +45,18 @@ function App() {
     setDarkMode(!darkMode);
   }
 
-  if (loading) return <LoadingComponent message="Initialising app..." />
-
   return (
     <ThemeProvider theme={theme}>
       <ToastContainer position="bottom-right" hideProgressBar theme="colored"/>
       <CssBaseline />
       <Header darkMode={darkMode} handleThemeChange={handleThemeChange}/>
-      <Container>
+      {loading ? <LoadingComponent message="Initialising app..." />
+        : location.pathname === '/' ? <HomePage/>
+        :       <Container sx={{mt: 4}}>
         {/* <Outlet/> */}
       </Container>
+      }
+
     </ThemeProvider>
   );
 }
